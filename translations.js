@@ -150,8 +150,8 @@ const translations = {
     contactLocation2: "Administrative coordination from Sweden",
     contactEmailTitle: "Email Us",
     contactWhatsAppTitle: "WhatsApp",
-    contactWhatsApp1: "+256 787 116327 (Uganda)",
-    contactWhatsApp2: "+46 *** *** *** (Sweden - working on it)",
+    contactWhatsApp1: "+256 787 116327",
+    contactWhatsApp2: "+46 *** *** *** ",
     contactOfficeTitle: "Office Hours",
     contactOffice1: "Monday–Friday",
     contactOffice2: "9:00 AM – 5:00 PM (EAT & CET)",
@@ -356,8 +356,8 @@ const translations = {
     contactLocation2: "Administrativ koordinering från Sverige",
     contactEmailTitle: "Mejla Oss",
     contactWhatsAppTitle: "WhatsApp",
-    contactWhatsApp1: "+256 787 116327 (Uganda)",
-    contactWhatsApp2: "+46 *** *** *** (Sverige - under arbete)",
+    contactWhatsApp1: "+256 787 116327",
+    contactWhatsApp2: "+46 *** *** *** ",
     contactOfficeTitle: "Kontorstider",
     contactOffice1: "Måndag–Fredag",
     contactOffice2: "9:00–17:00 (EAT & CET)",
@@ -413,3 +413,4 @@ const translations = {
   }
 
 };
+
