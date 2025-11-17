@@ -101,7 +101,7 @@ const translations = {
     // === Impact Page ===
     impactHeroTitle: "Our Impact",
     impactHeroSubtitle: "See how your support is making a tangible difference in the lives of elders in Zombo.",
-    impactNumbersTitle: "By the Numbers (2024)",
+    impactNumbersTitle: "By the Numbers",
     impactStat1: "Elders Supported",
     impactStat2: "Home Visits Conducted",
     impactStat3: "Nutritious Meals Delivered",
@@ -307,7 +307,7 @@ const translations = {
     // === Impact Page ===
     impactHeroTitle: "Vår Påverkan",
     impactHeroSubtitle: "Se hur ditt stöd gör en konkret skillnad i livet för äldre i Zombo.",
-    impactNumbersTitle: "I Siffror (2024)",
+    impactNumbersTitle: "I Siffror",
     impactStat1: "Äldre Som Stöttas",
     impactStat2: "Hembesök Genomförda",
     impactStat3: "Nyttiga Måltider Levererade",
@@ -411,4 +411,5 @@ const translations = {
     cookieText: "Vi använder kakor för att förbättra din upplevelse och stödja vårt uppdrag att hjälpa äldre i Zombo, Uganda. Genom att fortsätta använda vår webbplats godkänner du vår användning av kakor.",
     cookieAccept: "Jag Förstår"
   }
+
 };
