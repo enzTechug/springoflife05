@@ -1,0 +1,225 @@
+<?php
+session_start();
+require_once 'db_connection.php';
+
+// Check if admin is logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
+$database = new Database();
+$db = $database->getConnection();
+
+// Get statistics
+$unread_messages = $db->query("SELECT COUNT(*) FROM messages WHERE is_read = 0 AND is_archived = 0")->fetchColumn();
+$total_subscribers = $db->query("SELECT COUNT(*) FROM newsletter_subscriptions WHERE is_active = 1")->fetchColumn();
+$total_donations = $db->query("SELECT COUNT(*) FROM donations WHERE status = 'completed'")->fetchColumn();
+$donation_visits = $db->query("SELECT COUNT(*) FROM page_visits WHERE page_name = 'donate'")->fetchColumn();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Spring of Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="springs logo.png" alt="Logo" class="h-8 w-auto">
+                <span class="ml-2 text-xl font-bold text-green-700">Spring of Life Admin</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-600">Welcome, <?php echo $_SESSION['admin_username']; ?></span>
+                <a href="logout.php" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Unread Messages</p>
+                        <p class="text-2xl font-semibold text-gray-900"><?php echo $unread_messages; ?></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-green-100 rounded-lg">
+                        <i class="fas fa-users text-green-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Newsletter Subscribers</p>
+                        <p class="text-2xl font-semibold text-gray-900"><?php echo $total_subscribers; ?></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-purple-100 rounded-lg">
+                        <i class="fas fa-donate text-purple-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Donations</p>
+                        <p class="text-2xl font-semibold text-gray-900"><?php echo $total_donations; ?></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-orange-100 rounded-lg">
+                        <i class="fas fa-eye text-orange-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Donation Page Visits</p>
+                        <p class="text-2xl font-semibold text-gray-900"><?php echo $donation_visits; ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-lg shadow mb-8">
+            <div class="border-b">
+                <nav class="flex -mb-px">
+                    <button onclick="showTab('messages')" id="tab-messages" class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-green-500 text-green-600">
+                        <i class="fas fa-envelope mr-2"></i>Messages
+                        <?php if ($unread_messages > 0): ?>
+                            <span class="ml-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full"><?php echo $unread_messages; ?></span>
+                        <?php endif; ?>
+                    </button>
+                    <button onclick="showTab('newsletter')" id="tab-newsletter" class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        <i class="fas fa-users mr-2"></i>Newsletter
+                    </button>
+                    <button onclick="showTab('analytics')" id="tab-analytics" class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        <i class="fas fa-chart-bar mr-2"></i>Analytics
+                    </button>
+                    <button onclick="showTab('donations')" id="tab-donations" class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                        <i class="fas fa-donate mr-2"></i>Donations
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="p-6">
+                <!-- Messages Tab -->
+                <div id="tab-content-messages" class="tab-content">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-semibold">Contact Messages</h3>
+                        <div class="flex space-x-2">
+                            <button onclick="loadMessages('unread')" class="px-4 py-2 bg-blue-100 text-blue-700 rounded-md text-sm">Unread</button>
+                            <button onclick="loadMessages('all')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm">All Messages</button>
+                            <button onclick="loadMessages('archived')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md text-sm">Archived</button>
+                        </div>
+                    </div>
+                    <div id="messages-container" class="space-y-4">
+                        <!-- Messages will be loaded here via AJAX -->
+                    </div>
+                </div>
+
+                <!-- Newsletter Tab -->
+                <div id="tab-content-newsletter" class="tab-content hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-lg font-semibold">Newsletter Subscribers</h3>
+                        <button onclick="downloadSubscribers()" class="px-4 py-2 bg-green-600 text-white rounded-md text-sm">
+                            <i class="fas fa-download mr-2"></i>Download CSV
+                        </button>
+                    </div>
+                    <div id="newsletter-container">
+                        <!-- Subscribers will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div id="tab-content-analytics" class="tab-content hidden">
+                    <h3 class="text-lg font-semibold mb-6">Page Analytics</h3>
+                    <div id="analytics-container">
+                        <!-- Analytics will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Donations Tab -->
+                <div id="tab-content-donations" class="tab-content hidden">
+                    <h3 class="text-lg font-semibold mb-6">Donation Tracking</h3>
+                    <div id="donations-container">
+                        <!-- Donations will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center">
+                    <h3 id="modal-title" class="text-xl font-semibold">Message Details</h3>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[60vh]">
+                <div id="modal-content"></div>
+                
+                <!-- Reply Form -->
+                <div class="mt-8 border-t pt-6">
+                    <h4 class="text-lg font-semibold mb-4">Reply to Message</h4>
+                    <form id="replyForm" onsubmit="sendReply(event)">
+                        <input type="hidden" id="reply-message-id">
+                        <input type="hidden" id="reply-email">
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">From:</label>
+                            <input type="text" value="info@springoflife.com" class="w-full px-3 py-2 border border-gray-300 rounded-md" readonly>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">To:</label>
+                            <input type="text" id="reply-to-email" class="w-full px-3 py-2 border border-gray-300 rounded-md" readonly>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject:</label>
+                            <input type="text" id="reply-subject" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message:</label>
+                            <textarea id="reply-message" rows="6" class="w-full px-3 py-2 border border-gray-300 rounded-md" required></textarea>
+                        </div>
+                        
+                        <div class="flex justify-end space-x-3">
+                            <button type="button" onclick="archiveMessage()" class="px-4 py-2 bg-gray-500 text-white rounded-md">Archive</button>
+                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Reply
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

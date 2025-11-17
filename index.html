@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="pageTitle">Spring of Life Elderly Care - Home</title>
+    <link rel="icon" type="image/x-icon" href="springs logo.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'primary': '#2E7D32', 'secondary': '#C9A227', 'accent': '#EAF5E1', 'warm-gray': '#333333' },
+                    fontFamily: { 'sans': ['Lato', 'sans-serif'], 'heading': ['Poppins', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans text-warm-gray antialiased">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-all duration-300" id="navbar">
+    <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <!-- Logo only on mobile, logo + text on desktop -->
+        <div class="flex items-center">
+            <img src="springs logo.png" alt="Logo" class="navbar-logo h-8 w-auto">
+            <span class="hidden md:inline text-xl font-bold text-primary ml-2 font-heading" data-key="orgName">Spring of Life Elderly Care</span>
+        </div>
+
+        <!-- Language switcher and mobile menu - always visible on mobile -->
+        <div class="flex items-center space-x-4">
+            <div class="text-sm">
+                <button id="lang-en" class="font-semibold text-warm-gray focus:outline-none text-xs">EN</button>
+                <span class="text-gray-300 mx-1">|</span>
+                <button id="lang-se" class="text-gray-500 hover:text-warm-gray focus:outline-none text-xs">SE</button>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-primary focus:outline-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Desktop navigation -->
+        <div class="hidden md:flex space-x-4 items-center">
+            <a href="/" class="text-primary font-semibold border-b-2 border-primary text-sm" data-key="navHome">Home</a>
+            <a href="about.html" class="hover:text-primary text-sm" data-key="navAbout">About</a>
+            <a href="programs.html" class="hover:text-primary text-sm" data-key="navPrograms">Programs</a>
+            <a href="impact.html" class="hover:text-primary text-sm" data-key="navImpact">Impact</a>
+            <a href="stories.html" class="hover:text-primary text-sm" data-key="navStories">Stories</a>
+            <a href="gallery.html" class="hover:text-primary text-sm" data-key="navGallery">Gallery</a>
+            <a href="contact.html" class="hover:text-primary text-sm" data-key="navContact">Contact</a>
+        </div>
+
+        <!-- Desktop donate button -->
+        <div class="hidden md:flex items-center space-x-4">
+            <a href="donate.html" class="bg-primary hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 text-sm" data-key="navDonateBtn">
+                Donate
+            </a>
+        </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+        <div class="flex flex-col space-y-1 p-4">
+            <a href="/" class="block py-2 px-4 text-primary font-semibold bg-accent rounded" data-key="navHome">Home</a>
+            <a href="about.html" class="block py-2 px-4 hover:text-primary hover:bg-accent rounded" data-key="navAbout">About</a>
+            <a href="programs.html" class="block py-2 px-4 hover:text-primary hover:bg-accent rounded" data-key="navPrograms">Programs</a>
+            <a href="impact.html" class="block py-2 px-4 hover:text-primary hover:bg-accent rounded" data-key="navImpact">Impact</a>
+            <a href="stories.html" class="block py-2 px-4 hover:text-primary hover:bg-accent rounded" data-key="navStories">Stories</a>
+            <a href="gallery.html" class="block py-2 px-4 hover:text-primary hover:bg-accent rounded" data-key="navGallery">Gallery</a>
+            <a href="contact.html" class="block py-2 px-4 hover:text-primary hover:bg-accent rounded" data-key="navContact">Contact</a>
+            <a href="donate.html" class="block py-3 px-4 bg-primary text-white font-bold rounded-full text-center mt-2" data-key="navDonateBtn">
+                Donate
+            </a>
+        </div>
+    </div>
+</header>
+
+    <main class="mt-[70px]"> <!-- Adjust margin-top to clear fixed header -->
+        <section class="relative h-screen flex items-center justify-center bg-gray-200 overflow-hidden" id="hero-section">
+    <!-- Only one set of background images with unique IDs -->
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out" id="hero-background-1" style="background-image: url('melvin-ankrah-sbyWax3zMRI-unsplash.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out opacity-0" id="hero-background-2" style="background-image: url('bill-hamway-GOhA-vkKzDg-unsplash.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out opacity-0" id="hero-background-3" style="background-image: url('house near.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out opacity-0" id="hero-background-4" style="background-image: url('roman-nguyen-TBdSTcSwXxo-unsplash.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out opacity-0" id="hero-background-5" style="background-image: url('colby-ray-aP65qX8Zy38-unsplash.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out opacity-0" id="hero-background-6" style="background-image: url('pexels-speakmediauganda-27471174.jpg');"></div>
+
+    <div class="relative z-10 w-full h-full flex items-center justify-start">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"></div>
+        <div class="container mx-auto px-6 py-12 text-white max-w-lg md:ml-20 relative">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 font-heading" data-key="heroTitle">Restoring Dignity, Hope & Care to the Elderly in Uganda</h1>
+            <p class="text-lg md:text-xl mb-8 font-heading" data-key="heroSubtitle">Supporting vulnerable elderly people in Zombo District through food relief, warm blankets, home visits, health support, and community love.</p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                <a href="donate.html" class="w-full sm:w-auto bg-white text-primary hover:bg-gray-100 font-bold py-3 px-6 rounded-full text-base transition duration-300 text-center" data-key="heroDonateBtn">
+                    Donate Now
+                </a>
+                <a href="about.html" class="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-primary font-bold py-3 px-6 rounded-full text-base transition duration-300 text-center" data-key="heroMissionBtn">
+                    Our Mission
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-primary mb-4 font-heading" data-key="aboutSectionTitle">Our Story</h2>
+                    <p class="text-lg text-warm-gray leading-relaxed mb-6" data-key="aboutSectionText1">
+                        Spring of Life began with a simple calling: to bring dignity, care, and companionship to elderly men and women who had been forgotten. After witnessing the daily struggles of vulnerable elders in Zombo District—loneliness, hunger, and little access to medical support—we felt moved to act.
+                    </p>
+                    <p class="text-lg text-warm-gray leading-relaxed mb-6" data-key="aboutSectionText2">
+                        What started as a small personal effort has grown into a community initiative that provides food support, home visits, health assistance, and opportunities for elders to stay active through traditional Alur handcrafts.
+                        Spring of Life continues to serve with compassion, transparency, and the belief that every elderly person deserves to be seen, valued, and cared for.
+                    </p>
+                    
+                    <h3 class="text-2xl font-bold text-primary mb-4 font-heading" data-key="missionStatement">Mission Statement</h3>
+                    <p class="text-lg text-warm-gray leading-relaxed mb-8" data-key="missionText">
+                        Our mission is to support vulnerable elderly people in Zombo District with food, home visits, healthcare assistance, and meaningful community engagement—restoring dignity, hope, and love to their lives.
+                    </p>
+                    
+                    <a href="about.html" class="bg-primary hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300" data-key="aboutLearnMoreBtn">Learn More</a>
+                </div>
+                <div>
+                    <img src="jj00999.jpg" alt="Elders receiving care" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </section>
+
+<section class="py-16 md:py-24 bg-accent">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-primary mb-12 fade-in-up font-heading" data-key="whatWeDoTitle">What We Do</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow-lg fade-in-up delay-100">
+                        <div class="text-5xl text-primary mb-4"><i class="fas fa-utensils"></i></div>
+                        <h3 class="text-xl font-semibold text-warm-gray mb-3 font-heading" data-key="helpCard1Title">Food & Nutrition Support</h3>
+                        <p class="text-warm-gray" data-key="helpCard1Text">Providing weekly nutritious meals and warm blankets to ensure elders are nourished and warm.</p>
+                    </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg fade-in-up delay-200">
+                        <div class="text-5xl text-primary mb-4"><i class="fas fa-home"></i></div>
+                        <h3 class="text-xl font-semibold text-warm-gray mb-3 font-heading" data-key="helpCard2Title">Home Visits & Care</h3>
+                        <p class="text-warm-gray" data-key="helpCard2Text">Regular home visits offering companionship, hygiene support, and basic care.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg fade-in-up delay-300">
+                        <div class="text-5xl text-primary mb-4"><i class="fas fa-heartbeat"></i></div>
+                        <h3 class="text-xl font-semibold text-warm-gray mb-3 font-heading" data-key="helpCard3Title">Healthcare Support</h3>
+                        <p class="text-warm-gray" data-key="helpCard3Text">Providing essential health checkups, medication, and clinic referrals.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                    <a href="programs.html" class="bg-primary hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300" data-key="viewAllProgramsBtn">View All Programs</a>
+                </div>
+                
+                <div class="mt-16">
+                    <h3 class="text-2xl font-bold text-primary mb-6 font-heading" data-key="culturalHandcraftsTitle">Cultural Handcrafts</h3>
+                    <p class="text-lg text-warm-gray max-w-2xl mx-auto mb-8" data-key="culturalHandcraftsText">
+                        Encouraging elders to create traditional Alur crafts to stay active, connected, and support the project.
+                    </p>
+                </div>
+                
+
+            </div>
+        </section>
+
+        <!-- Spring of Life Naturals Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary mb-6 font-heading" data-key="naturalsTitle">Spring of Life Naturals</h2>
+                        <p class="text-lg text-warm-gray mb-6" data-key="naturalsText1">
+                            <strong data-key="naturalsSubtitle">Natural Products With Purpose</strong><br>
+                            Spring of Life Naturals creates simple, safe, and effective skincare and wellness products using locally sourced Ugandan ingredients.
+                            Every purchase supports our elderly programs.
+                        </p>
+                        
+                        <h3 class="text-xl font-bold text-primary mb-4 font-heading" data-key="productsInclude">Our Products Include:</h3>
+                        <ul class="list-disc list-inside text-warm-gray mb-6 space-y-2">
+                            <li data-key="product1">Lemongrass oil blends</li>
+                            <li data-key="product2">Avocado-based soaps and creams</li>
+                            <li data-key="product3">Palm oil body butter</li>
+                            <li data-key="product4">Soursop tea and powder</li>
+                            <li data-key="product5">Herbal balms</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold text-primary mb-4 font-heading" data-key="ourPromise">Our Promise</h3>
+                        <ul class="list-disc list-inside text-warm-gray mb-6 space-y-2">
+                            <li data-key="promise1">Plant-based ingredients</li>
+                            <li data-key="promise2">Ethically made</li>
+                            <li data-key="promise3">No harsh preservatives</li>
+                            <li data-key="promise4">Supporting local women and farmers</li>
+                        </ul>
+                        
+                        <p class="text-lg text-warm-gray italic">
+                            <strong data-key="whyItMatters">Why It Matters</strong><br>
+                            <span data-key="whyItMattersText">You receive high-quality natural products — the elderly receive support, food, and care.</span>
+                        </p>
+                    </div>
+                    <div>
+                        <img src="https://placehold.co/600x600?text=Spring+of+Life+Naturals+Products" alt="Spring of Life Naturals Products" class="rounded-lg shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Updated Stories Carousel Section with Auto-Changing -->
+<section class="py-16 md:py-24 bg-accent">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-primary mb-12 text-center font-heading" data-key="storiesCarouselTitle">Impact Stories</h2>
+        
+        <!-- Carousel Container -->
+        <div class="stories-carousel-container relative">
+            <div class="stories-carousel flex overflow-x-auto scroll-smooth space-x-6 pb-6" style="scrollbar-width: none;">
+                <!-- Story Card 1 -->
+                <div class="carousel-item flex-none w-80 bg-white rounded-lg shadow-lg overflow-hidden fade-in-up">
+                    <img src="https://placehold.co/300x200?text=Elder+Story+1" alt="Elder receiving care" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-warm-gray mb-3 font-heading" data-key="story1Title">A New Lease on Life</h3>
+                        <p class="text-warm-gray mb-4" data-key="story1Text">After years of isolation, Sarah found community and support through our programs.</p>
+                        <button class="read-more-btn bg-primary hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300" data-story="1" data-key="story1Btn">
+                            Read Full Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 2 -->
+                <div class="carousel-item flex-none w-80 bg-white rounded-lg shadow-lg overflow-hidden fade-in-up">
+                    <img src="https://placehold.co/300x200?text=Elder+Story+2" alt="Medical checkup" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-warm-gray mb-3 font-heading" data-key="story2Title">Health Restored</h3>
+                        <p class="text-warm-gray mb-4" data-key="story2Text">George received life-changing medical treatment through our health program.</p>
+                        <button class="read-more-btn bg-primary hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300" data-story="2" data-key="story2Btn">
+                            Read Full Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 3 -->
+                <div class="carousel-item flex-none w-80 bg-white rounded-lg shadow-lg overflow-hidden fade-in-up">
+                    <img src="https://placehold.co/300x200?text=Elder+Story+3" alt="Home repair" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-warm-gray mb-3 font-heading" data-key="story3Title">Safe at Last</h3>
+                        <p class="text-warm-gray mb-4" data-key="story3Text">Margaret's home was repaired, giving her safety and peace of mind.</p>
+                        <button class="read-more-btn bg-primary hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300" data-story="3" data-key="story3Btn">
+                            Read Full Story
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <button class="carousel-prev hidden md:flex">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-next hidden md:flex">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- View All Stories Button -->
+        <div class="text-center mt-12">
+            <a href="stories.html" class="bg-primary hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300" data-key="viewAllStoriesBtn">
+                View All Stories
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Story Modal -->
+<div id="story-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-2xl font-bold text-primary font-heading"></h3>
+                <button class="modal-close text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <img id="modal-image" src="" alt="" class="w-full h-64 object-cover rounded-lg mb-4">
+            <p id="modal-content" class="text-warm-gray"></p>
+        </div>
+    </div>
+</div>
+
+        <section class="py-16 md:py-24 bg-secondary text-white text-center">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading" data-key="callToActionTitle">BE PART OF THE CHANGE</h2>
+                <p class="text-lg md:text-xl leading-relaxed mb-8" data-key="callToActionText">
+                    Every small act of kindness restores dignity to an elderly person. You can help today through prayer, volunteering, or a monthly gift.
+                </p>
+                <a href="donate.html" class="bg-white text-primary hover:bg-gray-100 font-bold py-3 px-10 rounded-full text-xl transition duration-300" data-key="callToActionDonateBtn">Donate Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-primary text-accent pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4 font-heading" data-key="orgName">Spring of Life Elderly Care</h4>
+                    <p class="text-accent/80 mb-4" data-key="footerDescription">Restoring dignity, hope, and care to the elderly in Uganda.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/share/16idphUdAN/?mibextid=wwXIfr" class="text-white hover:text-secondary text-2xl" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/springoflifeelderly?igsh=M2R5MmYydDIzODEz&utm_source=qr" class="text-white hover:text-secondary text-2xl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/256787116327" class="text-white hover:text-secondary text-2xl" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4 font-heading" data-key="quickLinksTitle">Quick Links</h5>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="hover:text-white" data-key="navAbout">About Us</a></li>
+                        <li><a href="programs.html" class="hover:text-white" data-key="navPrograms">Programs</a></li>
+                        <li><a href="stories.html" class="hover:text-white" data-key="navStories">Stories</a></li>
+                        <li><a href="contact.html" class="hover:text-white" data-key="navContact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4 font-heading" data-key="getInvolvedTitle">Get Involved</h5>
+                    <ul class="space-y-2">
+                        <li><a href="donate.html" class="hover:text-white" data-key="navDonateBtn">Donate Now</a></li>
+                        <li><a href="#" class="hover:text-white" data-key="volunteer">Volunteer</a></li>
+                        <li><a href="#" class="hover:text-white" data-key="partnerships">Partnerships</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold text-white mb-4 font-heading" data-key="stayUpdatedTitle">Stay Updated</h5>
+                    <p class="mb-4" data-key="footerNewsletterPrompt">Get news and impact stories straight to your inbox.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded text-warm-gray mb-2" data-key-placeholder="emailPlaceholder">
+                        <button type="submit" class="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-300" data-key="subscribeBtn">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <hr class="border-t border-accent/30 my-6">
+            <div class="text-center text-sm text-accent/80">
+                <p>&copy; 2025 <span data-key="orgName">Spring of Life</span>. <span data-key="allRightsReserved">All rights reserved.</span></p>
+                <p>
+                    <a href="#" class="hover:text-white" data-key="privacyPolicy">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-white" data-key="termsOfUse">Terms of Use</a> | 
+                    <a href="donate.html" class="hover:text-white" data-key="navDonateBtn">Donate</a> | 
+                    <a href="contact.html" class="hover:text-white" data-key="navContact">Contact Us</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Cookie Consent Banner -->
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-primary text-white p-4 z-50 hidden">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div class="mb-4 md:mb-0 md:mr-4">
+            <p class="text-sm" data-key="cookieText">
+                We use cookies to enhance your experience and support our mission of helping elders in Zombo, Uganda. 
+                By continuing to use our site, you agree to our use of cookies.
+            </p>
+        </div>
+        <button id="accept-cookies" class="bg-white text-primary hover:bg-accent font-bold py-2 px-6 rounded-full transition duration-300 whitespace-nowrap" data-key="cookieAccept">
+            I Understand
+        </button>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cookieConsent = document.getElementById('cookie-consent');
+        const acceptCookiesButton = document.getElementById('accept-cookies');
+
+        if (!localStorage.getItem('cookies-accepted')) {
+            cookieConsent.classList.remove('hidden');
+        }
+
+        acceptCookiesButton.addEventListener('click', () => {
+            localStorage.setItem('cookies-accepted', 'true');
+            cookieConsent.classList.add('hidden');
+        });
+    });
+</script>
+</body>
+</html>
+
+
